@@ -3,11 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://juliuskoskela.dev/categories/</loc>
+    <loc>https://juliuskoskela.dev/posts/intel-simd-study/</loc>
+    <lastmod>2022-04-22T00:39:23+03:00</lastmod>
   </url>
   
   <url>
     <loc>https://juliuskoskela.dev/</loc>
+    <lastmod>2022-04-22T00:39:23+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juliuskoskela.dev/posts/</loc>
+    <lastmod>2022-04-22T00:39:23+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juliuskoskela.dev/categories/</loc>
   </url>
   
   <url>

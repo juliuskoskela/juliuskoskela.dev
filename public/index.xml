@@ -6,9 +6,19 @@
     <description>Recent content on Julius Koskela</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 22 Apr 2022 00:39:23 +0300</lastBuildDate>
     
 	<atom:link href="https://juliuskoskela.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Intel SIMD Study</title>
+      <link>https://juliuskoskela.dev/posts/intel-simd-study/</link>
+      <pubDate>Fri, 22 Apr 2022 00:39:23 +0300</pubDate>
+      
+      <guid>https://juliuskoskela.dev/posts/intel-simd-study/</guid>
+      <description>Optimizing Simple Matrix Multiplication With Intel SIMD Abstract This is a test report about possible performance gains in a simple 4x4 or 8x8 matrix multiplication when using Intel&amp;rsquo;s intrinsic instruction wrappers and SIMD (Single Instruction Mutiple Data) types. SIMD intrinsic functions are basically wrappers for assembly instructions, which can be conveniently used inside a C-program. Thus we can explore the full power of vectorization and other techniques taking advantage of the wider datatypes and corresponding methods.</description>
+    </item>
     
   </channel>
 </rss>
