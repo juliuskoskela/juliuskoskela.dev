@@ -1,12 +1,12 @@
 ---
 title: "Intel SIMD Study"
 date: 2022-04-22T00:39:23+03:00
-draft: true
+draft: false
 ---
 
-# Optimizing Simple Matrix Multiplication With Intel SIMD
+## Optimizing Simple Matrix Multiplication With Intel SIMD
 
-## Abstract
+### Abstract
 
 This is a test report about possible performance gains in a simple 4x4 or 8x8
 matrix multiplication when using Intel's intrinsic instruction wrappers and SIMD
@@ -15,7 +15,7 @@ wrappers for assembly instructions, which can be conveniently used inside a
 C-program. Thus we can explore the full power of vectorization and other
 techniques taking advantage of the wider datatypes and corresponding methods.
 
-## SIMD: A Brief Introduction
+### SIMD: A Brief Introduction
 
 SIMD stands for single instruction multiple data and means exactly that. We
 operate on data registers that are wider than those commonly used in programs
@@ -33,7 +33,7 @@ optimizations are used only if the target platform supports them and otheriwse
 we use the naive implementations as fallback and let the compiler optimize them
 as best it can.
 
-### SIMD - Vectors
+#### SIMD - Vectors
 
 The first thing we need to understand is that the SIMD registers work as fixed
 size vectors. So a `__m128` type is the same as `float[4]` and typecasting
@@ -50,7 +50,7 @@ __m256i	xmm;	// A 256-bit register of 4 x int64
 
 ```
 
-### Convenient Unions
+#### Convenient Unions
 
 In my tests I found a convenient use for unions in the context of SIMD
 vectors.
@@ -70,7 +70,7 @@ produce a 4x4 matrix, we need 4 such registers. When we declare those registers
 inside a union together with a 4x4 array of floats, we can easily access the
 values in the matrix without having to do ugly casts.
 
-### Basic Operations
+#### Basic Operations
 
 Let's consider simple addition of elements in two vectors. We could use the
 function `_mm_add_ps` to do this.
@@ -85,7 +85,7 @@ function `_mm_add_ps` to do this.
 
 ```
 
-## Vectorization
+### Vectorization
 
 Vectorization is a method of parallel computation. When working with SIMD-
 types, we leverage the fact that we have up to 512-bit (in AVX512 enabled
@@ -140,9 +140,9 @@ related to the technique of loop unrolling.
 !!!Talk about how parallel vs. linear computing methods partly solve different
 problems. For example dot product.
 
-## Matrix Multiplication
+### Matrix Multiplication
 
-### Naive Implementation
+#### Naive Implementation
 
 ```c
 
@@ -166,7 +166,7 @@ t_m4x4f	m4x4f_mul_naive(t_m4x4f *a, t_m4x4f *b)
 
 ```
 
-### Simple Implementation Using SIMD
+#### Simple Implementation Using SIMD
 
 ```c
 
@@ -195,15 +195,15 @@ t_m4x4f	m4x4f_mul_direct_no_unroll(t_m4x4f *a, t_m4x4f *b)
 
 ```
 
-## Test and Results
+### Test and Results
 
-### Test Setup
+#### Test Setup
 
-### Results
+#### Results
 
-### Conclusions
+#### Conclusions
 
-## Resources
+### Resources
 
 https://stackoverflow.blog/2020/07/08/improving-performance-with-simd-intrinsics-in-three-use-cases/
 
