@@ -40,14 +40,12 @@ size vectors. So a `__m128` type is the same as `float[4]` and typecasting
 between the two or putting them in a union works.
 
 ```c
-
 __m128	xmm;	// A 128-bit register of 4 x float
 __m128d	xmm;	// A 128-bit register of 2 x double
 __m128i	xmm;	// A 128-bit register of 4 x int32??
 __m256	xmm;	// A 256-bit register of 8 x float
 __m256d	xmm;	// A 256-bit register of 4 x double
 __m256i	xmm;	// A 256-bit register of 4 x int64
-
 ```
 
 #### Convenient Unions
@@ -56,13 +54,11 @@ In my tests I found a convenient use for unions in the context of SIMD
 vectors.
 
 ```c
-
 typedef union u_m4x4f
 {
 	float	n[4][4];
 	__m128	xmm[4];
 }	t_m4x4f;
-
 ```
 
 The `__m128` type is a 128-bit wide register interpreted as a float. In order to
@@ -76,13 +72,11 @@ Let's consider simple addition of elements in two vectors. We could use the
 function `_mm_add_ps` to do this.
 
 ```
-
 1  2  3  4
 +  +  +  +
 2  3  4  5
 =  =  =  =
 2  6  12 20
-
 ```
 
 ### Vectorization
@@ -97,7 +91,6 @@ we actually find the performance gains. Let's consider multiplying two vectors
 of floats together.
 
 ```c
-
 void mul(float dst[4], float a[4], float b[4])
 {
 	for (i = 0; i < 4; i++)
@@ -105,7 +98,6 @@ void mul(float dst[4], float a[4], float b[4])
 		dst[i] = a[i] * b[i];
 	}
 }
-
 ```
 
 Above we iterate over the values and multiply them together. Now let's do the
@@ -113,12 +105,10 @@ same with SIMD registers.
 
 
 ```c
-
 __m128 mul(__m128 dst, __m128 a, __m128 b)
 {
 	return (__mm_mul_ps(a, b);
 }
-
 ```
 
 Actually the whole function is redundant because the `__mm_mul_ps` itself is the
@@ -145,7 +135,6 @@ problems. For example dot product.
 #### Naive Implementation
 
 ```c
-
 t_m4x4f	m4x4f_mul_naive(t_m4x4f *a, t_m4x4f *b)
 {
 	t_m4x4f	res;
@@ -163,13 +152,11 @@ t_m4x4f	m4x4f_mul_naive(t_m4x4f *a, t_m4x4f *b)
 	}
 	return (res);
 }
-
 ```
 
 #### Simple Implementation Using SIMD
 
 ```c
-
 t_m4x4f	m4x4f_mul_direct_no_unroll(t_m4x4f *a, t_m4x4f *b)
 {
 	t_m4x4f	res;
@@ -191,8 +178,6 @@ t_m4x4f	m4x4f_mul_direct_no_unroll(t_m4x4f *a, t_m4x4f *b)
 	}
 	return (res);
 }
-
-
 ```
 
 ### Test and Results
